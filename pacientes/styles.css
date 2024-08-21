@@ -1,0 +1,171 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #D9D9D9;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    background-color: white;
+    padding: 20px;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #2c6e91;
+    padding: 10px 20px;
+    border-radius: 10px;
+}
+
+.logo {
+    width: 80px;
+}
+.nav-button {
+    background-color: #5aa0c2;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    margin: 0 10px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.user-profile {
+    display: flex;
+    align-items: center;
+}
+
+.user-icon {
+    width: 40px;
+    border-radius: 50%;
+}
+
+.search-section {
+    display: flex;
+    align-items: center;
+    margin: 20px 0;
+}
+
+.search-input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+.search-button img {
+    width: 30px; /* Defina a largura que você desejar */
+}
+.search-button {
+    background-color: #5aa0c2;
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.3);
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.register-button {
+    background-color: #5aa0c2;
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.3);
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    margin-left: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.table-section {
+    margin-top: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: #5aa0c2;
+    color: white;
+}
+
+/* CSS existente acima */
+
+.popup {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+}
+
+.popup-content {
+    background-color: #2c6e91; /* Cor de fundo do pop-up */
+    padding: 20px;
+    border-radius: 10px;
+    width: 350px; /* Largura do pop-up */
+    text-align: center;
+    color: white; /* Cor do texto */
+}
+
+.popup-content h2 {
+    margin-bottom: 20px;
+    font-size: 1.5em;
+}
+
+.popup-content label {
+    display: block;
+    margin-top: 10px;
+    text-align: left;
+}
+
+.popup-content input {
+    width: 100%; /* Largura dos inputs */
+    max-width: 300px; /* Ajuste aqui para definir o tamanho máximo dos inputs */
+    padding: 10px;
+    margin-top: 5px;
+    border: none;
+    border-radius: 5px;
+    box-sizing: border-box; /* Garante que padding seja incluído na largura total */
+}
+
+/* Estilo para a linha selecionada */
+.selected {
+    background-color: #c8e6e5; /* Um tom suave de verde */
+}
+
+.submit-button {
+    background-color: #5aa0c2; /* Cor do botão */
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    margin-top: 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    width: 100%;
+}
+
+.close-button {
+    float: right;
+    font-size: 24px;
+    cursor: pointer;
+    color: white;
+}
+
+/* CSS existente abaixo */

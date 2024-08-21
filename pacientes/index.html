@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página do Consultório</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <img src="images/logo.png" alt="Logo" class="logo">
+            <nav>
+                <button class="nav-button">PAINEL</button>
+                <button class="nav-button">CONSULTAS</button>
+                <button class="nav-button">PACIENTES</button>
+            </nav>
+            <div class="user-profile">
+                <img src="images/user-icon.png" alt="Perfil do Usuário" class="user-icon">
+            </div>
+        </header>
+
+        <section class="search-section">
+            <input type="text" placeholder="Digite o nome do paciente" class="search-input">
+            <button class="search-button"><img src="images/search-icon.png" alt="Buscar"></button>
+            <button class="register-button">CADASTRAR</button>
+        </section>
+
+        <section class="table-section">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nome</th>
+                        <th>Idade</th>
+                        <th>Telefone</th>
+                        <th>Convênio</th>
+                    </tr>
+                </thead>
+                <tbody id="table-body">
+                    <!-- Linhas da tabela serão inseridas aqui -->
+                </tbody>
+            </table>
+        </section>
+    </div>
+    <div id="popup-form" class="popup">
+        <div class="popup-content">
+            <span class="close-button">&times;</span>
+            <h2>Cadastrar novo paciente</h2>
+            <form id="cadastrar-paciente-form">
+                <label for="nome">Nome:</label>
+                <input type="text" id="nome" name="nome" required><br>
+
+                <label for="dataNascimento">Data de Nascimento:</label>
+                <input type="date" id="dataNascimento" name="dataNascimento" required><br>
+
+                <label for="telefone">Telefone:</label>
+                <input type="text" id="telefone" name="telefone" required><br>
+
+                <label for="convenio">Convênio:</label>
+                <input type="text" id="convenio" name="convenio" required><br>
+
+                <button type="submit" class="submit-button">CADASTRAR</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="scripts.js"></script>
+</body>
+</html>

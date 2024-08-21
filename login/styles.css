@@ -1,0 +1,37 @@
+body {
+    background-color: #235869;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card {
+    background-color: #235869;
+    border-radius: 10px;
+    border: none;
+    text-align: center;
+    width: 100%;
+    max-width: 400px; /* Ajuste o tamanho máximo do card para dispositivos móveis */
+}
+
+h3 {
+    font-size: 24px;
+    font-weight: 900 !important;
+    text-align: left !important;
+    color: #fff;
+}
+
+.btn-primary {
+    background-color: #4FA5B3;
+    font-weight: 900 !important;
+    border-radius: 20px;
+    border: none;
+}
+
+.btn-primary:hover {
+    background-color: #3C8C97;
+}
