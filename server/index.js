@@ -8,7 +8,8 @@ app.use(bodyParser.json());
 
 // Configuração do banco de dados
 const db = mysql.createConnection({
-    host: '192.168.0.16:3306',
+    host: '192.168.0.16', // Endereço IP do servidor do banco de dados
+    port: 3306, // Porta do banco de dados MySQL
     user: 'dede',
     password: 'Andre2404!',
     database: 'SistemaConsultorio'
