@@ -8,8 +8,8 @@ app.use(bodyParser.json());
 
 // Configuração do banco de dados
 const db = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
+    host: '192.168.0.16:3306',
+    user: 'dede',
     password: 'Andre2404!',
     database: 'SistemaConsultorio'
 });

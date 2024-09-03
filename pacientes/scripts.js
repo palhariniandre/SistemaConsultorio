@@ -124,3 +124,36 @@ function calcularIdade(dataNascimento) {
      })
      .catch(error => console.error('Erro ao cadastrar paciente:', error));
  });
+// Event Listener para o Botão de Busca
+document.querySelector('.search-button').addEventListener('click', function() {
+    const searchText = document.querySelector('.search-input').value.toLowerCase();  // Obter o texto da busca
+
+    fetch('http://localhost:3000/api/pacientes')
+        .then(response => response.json())
+        .then(data => {
+            const filteredData = data.filter(paciente => paciente.nome.toLowerCase().includes(searchText));  // Filtrar os dados
+
+            const tableBody = document.getElementById('table-body');
+            tableBody.innerHTML = '';  // Limpar a tabela atual
+
+            // Preencher a tabela com os dados filtrados
+            filteredData.forEach(paciente => {
+                const row = document.createElement('tr');
+
+                // Criar e adicionar células na linha da tabela
+                ['idPaciente', 'nome', 'dataNascimento', 'telefone', 'convenio'].forEach(attr => {
+                    const cell = document.createElement('td');
+                    if (attr === 'dataNascimento') {  // Calcular idade se a coluna for dataNascimento
+                        cell.textContent = calcularIdade(paciente[attr]);
+                    } else {
+                        cell.textContent = paciente[attr];
+                    }
+                    row.appendChild(cell);
+                });
+
+                tableBody.appendChild(row);
+            });
+            addRowSelection();  // Reativar a função de seleção após atualizar a tabela
+        })
+        .catch(error => console.error('Erro ao buscar pacientes:', error));
+});
