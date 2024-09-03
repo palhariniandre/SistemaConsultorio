@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
-    fetch('http://localhost:3000/api/pacientes')
+    fetch('http://192.168.0.16:3000/api/pacientes')
         .then(response => response.json())
         .then(data => {
             const tableBody = document.getElementById('table-body');
@@ -109,7 +109,7 @@ function calcularIdade(dataNascimento) {
          convenio: form.convenio.value
      };
 
-     fetch('http://localhost:3000/api/pacientes', {
+     fetch('http://192.168.0.16:3000/api/pacientes', {
          method: 'POST',
          headers: {
              'Content-Type': 'application/json'
@@ -128,7 +128,7 @@ function calcularIdade(dataNascimento) {
 document.querySelector('.search-button').addEventListener('click', function() {
     const searchText = document.querySelector('.search-input').value.toLowerCase();  // Obter o texto da busca
 
-    fetch('http://localhost:3000/api/pacientes')
+    fetch('http://192.168.0.16:3000/api/pacientes')
         .then(response => response.json())
         .then(data => {
             const filteredData = data.filter(paciente => paciente.nome.toLowerCase().includes(searchText));  // Filtrar os dados
