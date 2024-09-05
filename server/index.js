@@ -31,6 +31,7 @@ app.get('/api/consultas', (req, res) => {
         if (err) {
             throw err;
         }
+        //tranfoma a resposta da requisicao em um Json
         res.json(results);
     });
 });
@@ -71,7 +72,7 @@ app.get('/api/pacientes', (req, res) => {
 });
 
 // Servir os arquivos estáticos da pasta 'public'
-app.use(express.static('pacientes'));
+app.use(express.static('consultas'));
 // Endpoint para cadastrar novo paciente
 app.post('/api/pacientes', (req, res) => {
     const { nome, dataNascimento, telefone, convenio } = req.body;
