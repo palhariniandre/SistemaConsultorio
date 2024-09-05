@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Consultas Agendadas</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 </head>
 <body>
     <div class="container">
@@ -22,7 +23,18 @@
         </header>
 
         <section class="schedule-section">
-            <input type="date" class="date-input">
+            <!-- <input type="date" class="date-input"> -->
+            <input type="text" class="date-input">
+            
+            <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+            <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/pt.js"></script> 
+            <script>
+                flatpickr(".date-input", {
+                    dateFormat: "d/m/Y", // Define o formato como dd/MM/AAAA
+                    locale: "pt",          // Define o idioma para Português
+                    defaultDate: "today"
+                });
+            </script>
             <button class="schedule-button">Agendar nova Consulta</button>
         </section>
 

@@ -26,17 +26,33 @@ db.connect((err) => {
 
 // Endpoint para buscar as consultas
 app.get('/api/consultas', (req, res) => {
-    let sql = 'select c.idconsulta, p.nome, c.dataHora, c.tipoConsulta, c.convenio from consultas c, pacientes p where c.idPaciente = p.idPaciente;';
-    db.query(sql, (err, results) => {
+    const data = req.query.data; // Recebe a data no formato AAAA-MM-DD
+
+    if (!data) {
+        return res.status(400).send('Data não fornecida');
+    }
+
+    // Query para buscar as consultas na data especificada
+    let sql = `SELECT c.idconsulta, p.nome, c.dataHora, c.tipoConsulta, c.convenio FROM consultas c JOIN pacientes p ON c.idPaciente = p.idPaciente where DATE(c.dataHora) = ?;`;
+
+    // Executa a query, passando a data como parâmetro
+    db.query(sql, [data], (err, results) => {
         if (err) {
-            throw err;
+            console.error('Erro ao buscar consultas:', err);
+            return res.status(500).send('Erro ao buscar consultas');
         }
-        //tranfoma a resposta da requisicao em um Json
+
+        // Se não houver resultados, retornar uma mensagem adequada
+        if (results.length === 0) {
+            return res.status(404).send('Nenhuma consulta encontrada para essa data');
+        }
+
+        // Envia os resultados filtrados para o frontend
         res.json(results);
     });
 });
 
-
+//SELECT 
 
 
 // Rota para lidar com login
