@@ -24,6 +24,21 @@ db.connect((err) => {
     console.log('Conectado ao banco de dados.');
 });
 
+// Endpoint para buscar as consultas
+app.get('/api/consultas', (req, res) => {
+    let sql = 'select c.idconsulta, p.nome, c.dataHora, c.tipoConsulta, c.convenio from consultas c, pacientes p where c.idPaciente = p.idPaciente;';
+    db.query(sql, (err, results) => {
+        if (err) {
+            throw err;
+        }
+        //tranfoma a resposta da requisicao em um Json
+        res.json(results);
+    });
+});
+
+
+
+
 // Rota para lidar com login
 app.post('/login', (req, res) => {
     const { login, senha } = req.body;
@@ -57,7 +72,7 @@ app.get('/api/pacientes', (req, res) => {
 });
 
 // Servir os arquivos estáticos da pasta 'public'
-app.use(express.static('pacientes'));
+app.use(express.static('consultas'));
 // Endpoint para cadastrar novo paciente
 app.post('/api/pacientes', (req, res) => {
     const { nome, dataNascimento, telefone, convenio } = req.body;

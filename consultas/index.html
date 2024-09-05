@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consultas Agendadas</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <img src="images/logo.png" alt="Logo" class="logo">
+            <nav>
+                <button class="nav-button">PAINEL</button>
+                <button class="nav-button">CONSULTAS</button>
+                <button class="nav-button">PACIENTES</button>
+                <button class="nav-button">AGENDA</button>
+            </nav>
+            <div class="user-profile">
+                <img src="images/user-icon.png" alt="Perfil do Usuário" class="user-icon">
+            </div>
+        </header>
+
+        <section class="schedule-section">
+            <input type="date" class="date-input">
+            <button class="schedule-button">Agendar nova Consulta</button>
+        </section>
+
+        <section class="table-section">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Paciente</th>
+                        <th>Horário</th>
+                        <th>Convênio</th>
+                        <th>Data</th>
+                        <th>Tipo de Consulta</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody id="table-body">
+                    <!-- Linhas da tabela serão inseridas aqui -->
+                </tbody>
+            </table>
+        </section>
+    </div>
+    <script src="scripts.js"></script>
+</body>
+</html>
