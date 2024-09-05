@@ -24,6 +24,20 @@ db.connect((err) => {
     console.log('Conectado ao banco de dados.');
 });
 
+// Endpoint para buscar as consultas
+app.get('/api/consultas', (req, res) => {
+    let sql = 'select c.idconsulta, p.nome, c.dataHora, c.tipoConsulta, c.convenio from consultas c, pacientes p where c.idPaciente = p.idPaciente;';
+    db.query(sql, (err, results) => {
+        if (err) {
+            throw err;
+        }
+        res.json(results);
+    });
+});
+
+
+
+
 // Rota para lidar com login
 app.post('/login', (req, res) => {
     const { login, senha } = req.body;
