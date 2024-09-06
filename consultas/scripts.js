@@ -4,6 +4,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Função para separar data e hora
     function separarDataHora(dataHoraISO) {
+        if(dataHoraISO === ''){
+            return { data: '', hora: '' };
+
+        }
         const dataHora = new Date(dataHoraISO);
 
         // Formatar a data para dd/MM/yyyy
@@ -63,7 +67,7 @@ document.addEventListener('DOMContentLoaded', function() {
             // Criando botão de Deletar
             const deleteButton = document.createElement('button');
             deleteButton.classList.add('action-button');
-            const deleteIcon = document.createElement('img');
+            const deleteIcon = document.createElement('img');buscarConsultasPorData
             deleteIcon.src = 'images/delete-icon.png';
             deleteIcon.alt = 'Deletar';
             deleteButton.appendChild(deleteIcon);
@@ -78,7 +82,8 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Função para buscar consultas pela data
+
+
     function buscarConsultasPorData(dataSelecionada) {
         // Verificar se a data está no formato esperado pela biblioteca Flatpickr (dd/MM/yyyy)
         const partes = dataSelecionada.split('/');
@@ -97,12 +102,13 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (data.length > 0) {
                     preencherTabela(data); // Preencher a tabela com os dados recebidos
                 } else {
-                    tableBody.innerHTML = '<tr><td colspan="7">Nenhuma consulta encontrada para essa data</td></tr>';
+                    data = [{ idconsulta: '', nome: 'Nenhuma consulta encontrada', dataHora: '', tipoConsulta: '', convenio: '' }];
+                    preencherTabela(data); // Preencher a tabela com a mensagem de erro
                 }
             })
             .catch(error => console.error('Erro ao buscar consultas:', error));
     }
-
+    buscarConsultasPorData(dateInput.value); // Buscar as consultas pela data atual
     // Evento de mudança no campo de data
     dateInput.addEventListener('change', function() {
         const dataSelecionada = this.value; // Data no formato dd/MM/yyyy do Flatpickr

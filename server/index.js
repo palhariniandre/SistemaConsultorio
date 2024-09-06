@@ -42,12 +42,7 @@ app.get('/api/consultas', (req, res) => {
             return res.status(500).send('Erro ao buscar consultas');
         }
 
-        // Se não houver resultados, retornar uma mensagem adequada
-        if (results.length === 0) {
-            return res.status(404).send('Nenhuma consulta encontrada para essa data');
-        }
 
-        // Envia os resultados filtrados para o frontend
         res.json(results);
     });
 });
