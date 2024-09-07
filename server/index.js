@@ -1,8 +1,9 @@
 const express = require('express');
 const mysql = require('mysql2');
 const bodyParser = require('body-parser');
-
 const app = express();
+
+
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
@@ -96,6 +97,32 @@ app.post('/api/pacientes', (req, res) => {
         res.status(200).json({ id: result.insertId, nome, dataNascimento, telefone, convenio });
     });
 });
+
+app.post('/api/consultas', (req, res) => {
+    const { idPaciente, dataHora, tipoConsulta, convenio } = req.body;
+    let sql = `INSERT INTO consultas (idPaciente, dataHora, tipoConsulta, convenio) VALUES (?, ?, ?, ?)`;
+    db.query(sql, [idPaciente, dataHora, tipoConsulta, convenio], (err, result) => {
+        if (err) {
+            res.status(500).json({ error: err.message });
+            return;
+        }
+        res.status(200).json({ id: result.insertId, idPaciente, dataHora, tipoConsulta, convenio });
+    });
+});
+
+
+app.post('/api/consultas', (req, res) => {
+    const { idPaciente, dataHora, tipoConsulta, convenio } = req.body;
+    let sql = `INSERT INTO consultas (idPaciente, dataHora, tipoConsulta, convenio) VALUES (?, ?, ?, ?)`;
+    db.query(sql, [idPaciente, dataHora, tipoConsulta, convenio], (err, result) => {
+        if (err) {
+            res.status(500).json({ error: err.message });
+            return;
+        }
+        res.status(200).json({ id: result.insertId, idPaciente, dataHora, tipoConsulta, convenio });
+    });
+});
+
 
 
 // Iniciar o servidor

@@ -100,9 +100,7 @@ th {
     background-color: #5aa0c2;
     color: white;
 }
-
-/* CSS existente acima */
-
+/* Popup */
 .popup {
     display: none;
     position: fixed;

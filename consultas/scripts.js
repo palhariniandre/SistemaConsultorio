@@ -81,7 +81,24 @@ document.addEventListener('DOMContentLoaded', function() {
             tableBody.appendChild(row);
         });
     }
-
+    
+    function preencherchoosePaciente() {
+        fetch('http://localhost:3000/api/pacientes')
+            .then(response => response.json())
+            .then(data => {
+                const select = document.getElementById('searchable-select');
+                data.forEach(paciente => { // Itera sobre o array de pacientes
+                    let option = document.createElement('option');
+                    option.value = paciente.idPaciente; // Usar o ID do paciente como valor
+                    option.text = paciente.nome; // Nome do paciente
+                    select.add(option);
+                });
+            })
+            .catch(error => {
+                console.error('Erro ao carregar os pacientes:', error);
+            });
+    }
+    preencherchoosePaciente();
 
 
     function buscarConsultasPorData(dataSelecionada) {
@@ -117,3 +134,70 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 });
+    //controle do popup
+    const popup = document.getElementById('popup-form');
+    const closeButton = document.querySelector('.close-button');
+    const scheduleButton = document.querySelector('.schedule-button');
+
+    scheduleButton.addEventListener('click', function() {
+        popup.style.display = 'flex';
+    });
+    closeButton.addEventListener('click', function() {
+        popup.style.display = 'none';
+    });
+    //fechar popup ao clicar fora
+    window.addEventListener('click', function(event) {
+        if (event.target === popup) {
+            popup.style.display = 'none';
+        }
+    });
+
+
+    // Enviar dados do formulário ao backend
+    const form = document.getElementById('agendar-consulta-form');
+    form.addEventListener('submit', function(event) {
+        event.preventDefault();
+        
+        // Captura os valores dos campos
+        const paciente = document.getElementById('searchable-select').value;
+        const horario = document.getElementById('horario').value;
+        const convenio = document.querySelector('.choosebox').value;
+        const dataConsulta = document.getElementById('data').value; // Corrigido para dataConsulta
+        const tipoConsulta = document.getElementById('choosebox').value;
+        
+        const partes = dataConsulta.split('/');
+        if (partes.length !== 3) {
+            console.error('Data inválida');
+            return;
+        }
+
+        // Reorganizar as partes para o formato AAAA-MM-DD
+        const dataISO = `${partes[2]}-${partes[1]}-${partes[0]}`;
+        // Junta data e horário no formato DATETIME
+        const datetime = `${dataISO} ${horario}:00`; // Formato 'YYYY-MM-DDTHH:mm:ss'
+    
+        // Cria um objeto com os dados do agendamento
+        const agendamento = {
+            idPaciente: paciente,
+            dataHora: datetime, // Data e horário combinados no formato correto
+            tipoConsulta: tipoConsulta,
+            convenio: convenio
+        };
+    
+        console.log('Agendamento:', agendamento);
+        // Aqui você pode fazer a requisição para sua API, por exemplo:
+        fetch('http://localhost:3000/api/consultas', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(agendamento),
+        })
+        .then(response => response.json())
+        .then(data => {
+            alert('Consulta cadastrada com sucesso!');
+            popup.style.display = 'none';
+            // Adicionar o novo paciente à tabela (opcional)
+        })
+        .catch(error => console.error('Erro ao cadastrar consulta:', error));
+    });
