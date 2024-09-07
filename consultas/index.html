@@ -6,6 +6,11 @@
     <title>Consultas Agendadas</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 </head>
 <body>
     <div class="container">
@@ -25,16 +30,6 @@
         <section class="schedule-section">
             <!-- <input type="date" class="date-input"> -->
             <input type="text" class="date-input">
-            
-            <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-            <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/pt.js"></script> 
-            <script>
-                flatpickr(".date-input", {
-                    dateFormat: "d/m/Y", // Define o formato como dd/MM/AAAA
-                    locale: "pt",          // Define o idioma para Português
-                    defaultDate: "today"
-                });
-            </script>
             <button class="schedule-button">Agendar nova Consulta</button>
         </section>
 
@@ -57,6 +52,71 @@
             </table>
         </section>
     </div>
+    <div id="popup-form" class="popup">
+        <div class="popup-content">
+            <span class="close-button">&times;</span>
+            <h2>Agendar nova consulta</h2>
+            <form id="agendar-consulta-form">
+                <label for="paciente">Paciente:</label>
+                <select id="searchable-select" required>
+                    <!-- serao inseridas do banco de dados -->
+                </select><br>
+
+                <label for="horario">Horário:</label>
+                <input type="time" id="horario" name="horario" placeholder="ex: 12:00" required><br>
+
+                <label for="convenio">Convênio:</label>
+                <select class="choosebox" name="convenio" placeholder="Unimed" required>
+                    <option value="Particular">Particular</option>
+                    <option value="Unimed">Unimed</option>
+                    <option value="IPE">IPE</option>
+                    <option value="SUS">SUS</option>
+                    <option value="Outro">Outro</option>
+                </select><br>
+
+                <label for="data">Data:</label>
+                <!-- <input type="date" id="data" name="data" required><br> -->
+                <input type="text" id="data" class="date-input" required><br>
+
+                <label for="tipoConsulta">Tipo de Consulta:</label>
+                <select id="choosebox" name="tipoConsulta" required>
+                    <option value="Primeira consulta">Primeira consulta</option>
+                    <option value="Retorno">Retorno</option>
+                    <option value="Eletroencefalogramo">Eletroencefalogramo</option>
+                    <option value="Outro">Outro</option>
+                </select><br>
+
+
+                <button type="submit" id="popup-button" class="schedule-button">Agendar</button>
+            </form>
+        </div>
     <script src="scripts.js"></script>
+    <script>
+        $(document).ready(function() {
+            // Inicializar o Select2 com o campo de busca
+            $('#searchable-select').select2({
+                placeholder: 'Digite para buscar...',
+                allowClear: true
+            });
+        });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/pt.js"></script> 
+    <script>
+        flatpickr(".date-input", {
+            dateFormat: "d/m/Y", // Define o formato como dd/MM/AAAA
+            locale: "pt",          // Define o idioma para Português
+            defaultDate: "today"
+        });
+    </script>
+    <script>
+        flatpickr("#horario", {
+            enableTime: true,
+            noCalendar: true,
+            dateFormat: "H:i",  // Formato 24 horas
+            time_24hr: true     // Habilita o formato 24h
+        });
+    </script>
+    
 </body>
 </html>
