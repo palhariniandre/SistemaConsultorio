@@ -30,7 +30,6 @@ document.addEventListener('DOMContentLoaded', function() {
             fetch('http://localhost:3000/api/agenda')
             .then(response => response.json())
             .then(data => {
-                // Passa os eventos recebidos para o FullCalendar via successCallback
                 successCallback(data);
             })
             .catch(error => {
