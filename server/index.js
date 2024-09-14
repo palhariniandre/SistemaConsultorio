@@ -48,7 +48,24 @@ app.get('/api/consultas', (req, res) => {
     });
 });
 
-//SELECT 
+app.get('/api/agenda', (req, res) => {
+    const sql = `
+        SELECT CONCAT(c.tipoConsulta, ' ', p.nome) AS title, c.dataHora as start
+        FROM consultas c
+        JOIN pacientes p ON c.idPaciente = p.idPaciente
+    `;
+
+    // Executar a consulta
+    db.query(sql, (err, results) => {
+        if (err) {
+            console.error('Erro ao executar a consulta:', err);
+            return res.status(500).send('Erro ao buscar dados da agenda');
+        }
+
+        // Retornar os resultados no formato JSON
+        res.json(results);
+    });
+});
 
 
 // Rota para lidar com login
@@ -84,7 +101,7 @@ app.get('/api/pacientes', (req, res) => {
 });
 
 // Servir os arquivos estáticos da pasta 'public'
-app.use(express.static('consultas'));
+app.use(express.static('agenda'));
 // Endpoint para cadastrar novo paciente
 app.post('/api/pacientes', (req, res) => {
     const { nome, dataNascimento, telefone, convenio } = req.body;
